@@ -1,3 +1,9 @@
+import { Layout } from "../../common/components/Layout";
+
 export const Demo = () => {
-  return 1;
+  return (
+    <Layout>
+      <>2</>
+    </Layout>
+  );
 };

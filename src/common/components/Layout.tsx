@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 import { SideBar } from "./SideBar";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -19,6 +20,7 @@ interface ILayoutProps {
 
 export const Layout = ({ children }: ILayoutProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -44,7 +46,13 @@ export const Layout = ({ children }: ILayoutProps) => {
           >
             <Menu />
           </IconButton>
-          <Button color="inherit" aria-label="open drawer" onClick={() => {}}>
+          <Button
+            color="inherit"
+            aria-label="open drawer"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
             <ArrowBack />
             Back
           </Button>
