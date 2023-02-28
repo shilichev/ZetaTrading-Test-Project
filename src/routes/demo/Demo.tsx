@@ -1,11 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../app/store";
 import { Layout } from "../../common/components/Layout";
 import { AccordionItem } from "./components/Accordion";
+import { ITreeItem } from "./reducer/demo/slice";
+import { fetchDemoTree } from "./reducer/demo/thunks";
 
 const items: ITreeItem = {
   id: 1,
   name: "Root",
   children: [
+    { id: 12, name: "Ro323ot" },
+    { id: 13, name: "Ro3232ot" },
     {
       id: 11,
       name: "12121",
@@ -23,19 +29,16 @@ const items: ITreeItem = {
         { id: 142, name: "Ro323dwdwdwdwdwd2ot" },
       ],
     },
-    { id: 12, name: "Ro323ot" },
-    { id: 13, name: "Ro3232ot" },
     { id: 14, name: "Ro3232ot" },
   ],
 };
 
-export interface ITreeItem {
-  id: number;
-  name: string;
-  children?: ITreeItem[];
-}
-
 export const Demo = () => {
+  const tree = useSelector((state: RootState) => state.treeSlice.tree);
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(fetchDemoTree());
+  }, []);
   return (
     <Layout>
       <AccordionItem {...items} index={0} />

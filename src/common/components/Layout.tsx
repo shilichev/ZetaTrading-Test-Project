@@ -32,7 +32,7 @@ export const Layout = ({ children }: ILayoutProps) => {
       <AppBar
         position="fixed"
         sx={{
-          width: { lg: `calc(100% - ${drawerWidth}px)` },
+          width: { lg: `calc(100% - ${drawerWidth}px)`,  },
           ml: { lg: `${drawerWidth}px` },
         }}
       >
