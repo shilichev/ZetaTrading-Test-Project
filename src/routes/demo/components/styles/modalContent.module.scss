@@ -1,0 +1,25 @@
+.modal_body {
+  width: 70vw;
+  max-width: 400px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  form {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    div {
+        align-self: flex-end;
+    }
+    button {
+        margin-left: 10px;
+    }
+    .modal_button  {
+        width: 60px;
+        text-align: center;
+    }
+  }
+}

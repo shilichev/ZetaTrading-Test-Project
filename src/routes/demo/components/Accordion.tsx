@@ -1,18 +1,11 @@
-import {
-  Add,
-  ArrowForwardIosSharp,
-  DeleteOutlineOutlined,
-  EditOutlined,
-} from "@mui/icons-material";
+import { ArrowForwardIosSharp } from "@mui/icons-material";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Button,
   ClickAwayListener,
   Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
 import { useState } from "react";
 import { ITreeItem } from "../reducer/demo/slice";
 import { ButtonContainer } from "./ButtonContainer";
@@ -31,11 +24,11 @@ export const AccordionItem = ({
 
   const [isOpen, setState] = useState(false);
 
-  const handleState = () => {
-    setState(true);
+  const toogleModal = () => {
+    setState(!isOpen);
   };
 
-  const handleState1 = (event: any) => {
+  const handleCloseModal = () => {
     setState(false);
   };
 
@@ -44,9 +37,7 @@ export const AccordionItem = ({
       disableGutters
       key={id}
       TransitionProps={{ unmountOnExit: true }}
-      onClick={() => {
-        handleState();
-      }}
+      onClick={toogleModal}
       sx={{
         "& .MuiAccordionDetails-root": {
           padding: 0,
@@ -60,7 +51,7 @@ export const AccordionItem = ({
         },
       }}
     >
-      <ClickAwayListener onClickAway={handleState1}>
+      <ClickAwayListener onClickAway={handleCloseModal} disableReactTree={false}>
         <AccordionSummary
           sx={{
             flexDirection: "row-reverse",

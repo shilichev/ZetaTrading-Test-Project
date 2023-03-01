@@ -1,47 +1,29 @@
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
 import { Layout } from "../../common/components/Layout";
+import ModalComponent from "./components/Modal";
 import { AccordionItem } from "./components/Accordion";
-import { ITreeItem } from "./reducer/demo/slice";
 import { fetchDemoTree } from "./reducer/demo/thunks";
-
-const items: ITreeItem = {
-  id: 1,
-  name: "Root",
-  children: [
-    { id: 12, name: "Ro323ot" },
-    { id: 13, name: "Ro3232ot" },
-    {
-      id: 11,
-      name: "12121",
-      children: [
-        {
-          id: 122,
-          name: "Ro323ddwdwot",
-          children: [
-            { id: 122, name: "Ro323ddwdwot" },
-            { id: 132, name: "Ro323dwdwdwdwd2ot" },
-            { id: 142, name: "Ro323dwdwdwdwdwd2ot" },
-          ],
-        },
-        { id: 132, name: "Ro323dwdwdwdwd2ot" },
-        { id: 142, name: "Ro323dwdwdwdwdwd2ot" },
-      ],
-    },
-    { id: 14, name: "Ro3232ot" },
-  ],
-};
+import { actions } from "./reducer/modal/slice";
 
 export const Demo = () => {
   const tree = useSelector((state: RootState) => state.treeSlice.tree);
+  const modalState = useSelector((state: RootState) => state.treeSlice.modal);
   const dispatch = useDispatch<AppDispatch>();
+
+  const handleCloseModal = () => {
+    dispatch(actions.onCloseModal());
+  };
+
   useEffect(() => {
     dispatch(fetchDemoTree());
-  }, []);
+  }, [dispatch]);
+  
   return (
     <Layout>
-      <AccordionItem {...items} index={0} />
+      <AccordionItem {...tree} index={0} />
+      <ModalComponent handleCloseModal={handleCloseModal} {...modalState} />
     </Layout>
   );
 };

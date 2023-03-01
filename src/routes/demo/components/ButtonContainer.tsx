@@ -1,6 +1,9 @@
 import { Add, DeleteOutlineOutlined, EditOutlined } from "@mui/icons-material";
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { useDispatch } from "react-redux";
+import { ActionType } from "../../../common/types/modal";
+import { actions } from "../reducer/modal/slice";
 
 import classes from "./styles/accordion.module.scss";
 
@@ -17,6 +20,11 @@ export const ButtonContainer = ({
   name,
   index,
 }: IButtonContainerProps) => {
+  const dispatch = useDispatch();
+  const handleOpenModal = (actionType: ActionType) => {
+    dispatch(actions.onOpenModal({ actionType, id, name }));
+  };
+
   return (
     <>
       {isOpen && (
@@ -26,19 +34,35 @@ export const ButtonContainer = ({
             display: { lg: "flex", md: "flex", xs: "none", sl: "none" },
           }}
         >
-          <Button variant="contained">
+          <Button
+            variant="contained"
+            onClick={() => {
+              handleOpenModal(ActionType.ADD);
+            }}
+          >
             <Add fontSize="small" />
-
             <Typography fontWeight="500">ADD NEW</Typography>
           </Button>
           {index !== 0 && (
-            <Button color="info" variant="text">
+            <Button
+              color="info"
+              variant="text"
+              onClick={() => {
+                handleOpenModal(ActionType.RENAME);
+              }}
+            >
               <EditOutlined fontSize="small" />
               <Typography fontWeight="500">RENAME</Typography>
             </Button>
           )}
           {index !== 0 && (
-            <Button color="error" variant="text">
+            <Button
+              color="error"
+              variant="text"
+              onClick={() => {
+                handleOpenModal(ActionType.DELETE);
+              }}
+            >
               <DeleteOutlineOutlined fontSize="small" />
               <Typography fontWeight="500"> DELETE</Typography>
             </Button>
@@ -60,16 +84,33 @@ export const ButtonContainer = ({
             },
           }}
         >
-          <Button variant="contained">
+          <Button
+            variant="contained"
+            onClick={() => {
+              handleOpenModal(ActionType.ADD);
+            }}
+          >
             <Add fontSize="small" />
           </Button>
           {index !== 0 && (
-            <Button color="info" variant="text">
+            <Button
+              color="info"
+              variant="text"
+              onClick={() => {
+                handleOpenModal(ActionType.RENAME);
+              }}
+            >
               <EditOutlined fontSize="small" />
             </Button>
           )}
           {index !== 0 && (
-            <Button color="error" variant="text">
+            <Button
+              color="error"
+              variant="text"
+              onClick={() => {
+                handleOpenModal(ActionType.DELETE);
+              }}
+            >
               <DeleteOutlineOutlined fontSize="small" />
             </Button>
           )}

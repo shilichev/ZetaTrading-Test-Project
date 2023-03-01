@@ -15,15 +15,3 @@ export const fetchDemoTree = createAsyncThunk('fetchActualListings', async (_, {
         console.log(error);
     }
 })
-
-
-export const fetchAddBranch = createAsyncThunk('fetchAddBranch', async (_, { getState, dispatch }) => {
-    let data: ITreeItem
-    try {
-        const res = await httpClient.get<ITreeItem>('/api.user.tree.get', { treeName: "ed6bd1ad-02d8-446e-b5cf-1eb388fd4822" });
-        data = res.data;
-        dispatch(actions.setTree(data.children))
-    } catch (error) {
-        console.log(error);
-    }
-})

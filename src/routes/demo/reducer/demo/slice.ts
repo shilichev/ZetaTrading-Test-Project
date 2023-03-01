@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Reducer } from 'redux';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface ITreeItem {
     id: number;
@@ -21,6 +20,7 @@ const demoTreeSlice = createSlice({
             if (payload) {
                 state = payload;
             }
+            state.name = 'Root'
             return state
         },
         reset(): ITreeItem {
