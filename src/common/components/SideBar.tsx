@@ -23,14 +23,21 @@ export const SideBar = () => {
           <p className={classes.drawer__toolbar_subtitle}>Test Task</p>
         </div>
       </Toolbar>
-      <MenuList>
+      <MenuList
+        sx={{
+          "& .Mui-selected": {
+            color: "#2E7D32",
+            fontWeight: '600'
+          },
+        }}
+      >
         <MenuItem
           selected={RoutesEnum.DEMO === location.pathname}
           onClick={() => {
             navigate(RoutesEnum.DEMO);
           }}
         >
-          <DashboardOutlined fontSize="small" color="primary" />
+          <DashboardOutlined fontSize="small" color="action" />
 
           <ListItemText>Demo</ListItemText>
         </MenuItem>
@@ -40,7 +47,7 @@ export const SideBar = () => {
             navigate(RoutesEnum.DESCRIPTION);
           }}
         >
-          <DocumentScannerOutlined fontSize="small" color="primary" />
+          <DocumentScannerOutlined fontSize="small" color="action" />
 
           <ListItemText>Description</ListItemText>
         </MenuItem>
@@ -50,7 +57,7 @@ export const SideBar = () => {
             navigate(RoutesEnum.API);
           }}
         >
-          <TollOutlined fontSize="small" color="primary" />
+          <TollOutlined fontSize="small" color="action" />
 
           <ListItemText>API</ListItemText>
         </MenuItem>

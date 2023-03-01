@@ -1,0 +1,19 @@
+.accordion__button_collection {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  button {
+    margin: 0 10px;
+    padding: 0 5px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .accordion__button_collection {
+    button {
+      margin: 0;
+    }
+  }
+}
